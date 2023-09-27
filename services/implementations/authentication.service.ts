@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 export class AuthenticationService {
   public async authenticate(req: any): Promise<any> {
     let authToken;
@@ -22,13 +24,13 @@ export class AuthenticationService {
     }
   }
 
-  public async verifyAuthToken(authToken: string): Promise<any> {
-    try {
-      await admin.auth().verifyIdToken(authToken);
+  // public async verifyAuthToken(authToken: string): Promise<any> {
+  //   try {
+  //     await admin.auth().verifyIdToken(authToken);
 
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
+  //     return true;
+  //   } catch (error) {
+  //     return false;
+  //   }
+  // }
 }

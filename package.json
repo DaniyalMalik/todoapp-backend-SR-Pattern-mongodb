@@ -2,26 +2,30 @@
   "name": "todo-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
-    "start": "NODE_ENV=production node server",
-    "dev": "nodemon server"
+    "start": "node server.ts",
+    "dev": "nodemon server.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-xss-sanitizer": "^1.1.6",
     "helmet": "^7.0.0",
     "hpp": "^0.2.3",
     "inversify": "^6.0.1",
-    "mongo-sanitize": "^1.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.3",
-    "morgan": "^1.10.0",
-    "nodemon": "^3.0.1",
-    "typescript": "^5.2.2",
-    "xss": "^1.0.14"
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }

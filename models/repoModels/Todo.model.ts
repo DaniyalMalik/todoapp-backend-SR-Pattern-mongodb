@@ -1,9 +1,11 @@
-import MainInterface from './MainInterface.model';
+const mongoose = require('mongoose'),
+  MongooseSchema = new mongoose.Schema(
+    {
+      name: { type: String, default: '' },
+      description: { type: String, default: '' },
+      done: { type: String, default: '' },
+    },
+    { timestamps: true },
+  );
 
-export class Todo implements MainInterface {
-  id: string = '';
-  name: string = '';
-  description: string = '';
-  done: boolean = false;
-  createdAt: number = new Date().getTime();
-}
+module.exports = mongoose.model('Todo', MongooseSchema, 'Todo');

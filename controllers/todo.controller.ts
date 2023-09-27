@@ -1,10 +1,12 @@
-import * as express from 'express';
-import { Todo } from '../models/repoModels/Todo.model';
-import { TodoInterfaceService } from '../services/interfaces/todoInterface.service';
-import IDENTIFIERS from '../identifiers';
-import { resolve } from '../dependencyManagement';
-import { SubTodo } from '../models/repoModels/SubTodo.model';
-import { Role } from '../models/repoModels/Role.model';
+const express = require('express');
+const Todo = require('../models/repoModels/Todo.model');
+const {
+  TodoInterfaceService,
+} = require('../services/interfaces/todoInterface.service');
+const IDENTIFIERS = require('../identifiers');
+const { resolve } = require('../dependencyManagement');
+const { SubTodo } = require('../models/repoModels/SubTodo.model');
+const { Role } = require('../models/repoModels/Role.model');
 
 const { Router } = express;
 const router = Router();
@@ -15,7 +17,7 @@ function getTodoService(): TodoInterfaceService {
 
 const todoService = getTodoService();
 
-router.post('/', async (req: any, res) => {
+router.post('/', async (req: any, res: any) => {
   let todo: Todo = req.body.todo;
   let type: string = req.body.type;
   const result = await todoService.addTodo(
@@ -27,7 +29,7 @@ router.post('/', async (req: any, res) => {
   res.json(result);
 });
 
-router.post('/sub', async (req: any, res) => {
+router.post('/sub', async (req: any, res: any) => {
   let subTodo: SubTodo = req.body.subTodo;
   let todoId: string = req.query.todoId;
   const result = await todoService.addSubTodo(todoId, subTodo);
@@ -35,13 +37,13 @@ router.post('/sub', async (req: any, res) => {
   res.json(result);
 });
 
-router.get('/', async (req: any, res) => {
+router.get('/', async (req: any, res: any) => {
   const result = await todoService.getTodos();
 
   res.json(result);
 });
 
-router.get('/byDone', async (req, res) => {
+router.get('/byDone', async (req: any, res: any) => {
   let { done } = req.query;
   let boolVal: boolean = done === 'true' ? true : false;
   const result = await todoService.getTodosByDone(boolVal);
@@ -49,7 +51,7 @@ router.get('/byDone', async (req, res) => {
   res.json(result);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req: any, res: any) => {
   const { id } = req.params;
 
   const result = await todoService.deleteTodo(id);
@@ -57,14 +59,14 @@ router.delete('/:id', async (req, res) => {
   res.json(result);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req: any, res: any) => {
   const { id } = req.params;
   const result = await todoService.getTodo(id);
 
   res.json(result);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req: any, res: any) => {
   const { id } = req.params;
   const todo: Todo = req.body.todo;
   const result = await todoService.updateTodo(id, todo);
@@ -72,7 +74,7 @@ router.put('/:id', async (req, res) => {
   res.json(result);
 });
 
-router.post('/role', async (req: any, res) => {
+router.post('/role', async (req: any, res: any) => {
   const type: string = req.body.type;
   const todoId: string = req.body.todoId;
   const result = await todoService.addRole(
@@ -84,7 +86,7 @@ router.post('/role', async (req: any, res) => {
   res.json(result);
 });
 
-router.put('/sub/:id', async (req: any, res) => {
+router.put('/sub/:id', async (req: any, res: any) => {
   const id: string = req.params.id;
   const todoId: string = req.query.todoId;
   const subTodo: SubTodo = req.body.subTodo;
@@ -93,7 +95,7 @@ router.put('/sub/:id', async (req: any, res) => {
   res.json(result);
 });
 
-router.put('/role/:id', async (req: any, res) => {
+router.put('/role/:id', async (req: any, res: any) => {
   const id: string = req.params.id;
   const todoId: string = req.query.todoId;
   const role: Role = req.body.role;
